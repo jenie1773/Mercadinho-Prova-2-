@@ -1,18 +1,10 @@
-const mongoose = require("mongoose");
-
-const EstoqueSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-    },
-    nome: {
-        type: String,
-        required: true,
-    },
-    descricao: {
-        type: String,
-        required: true,
-    },
-});
-
-mongoose.model("Estoque", EstoqueSchema);
+module.exports = (sequelize, DataTypes) => {
+    const Estoque = sequelize.define("Estoque", {
+      nome: DataTypes.STRING,
+      quantidade: DataTypes.INTEGER,
+      preco: DataTypes.FLOAT,
+    });
+  
+    return Estoque;
+};
+  
