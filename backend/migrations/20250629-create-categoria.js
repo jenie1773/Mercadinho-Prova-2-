@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Estoques', {
+    await queryInterface.createTable('Categorias', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,10 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       codigo: {
-        type: Sequelize.INTEGER
+        type:Sequelize.INTEGER
       },
       nome: {
         type: Sequelize.STRING
+      },
+      categoriaPaiId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categorias',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +36,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('Estoques');
+    await queryInterface.dropTable('Categorias');
   }
 };
