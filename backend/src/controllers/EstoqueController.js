@@ -1,4 +1,4 @@
-const { Estoque } = require("../models"); // ajuste o caminho conforme sua estrutura
+const { Estoque } = require("../models/Estoque"); 
 
 module.exports = {
   async index(req, res) {

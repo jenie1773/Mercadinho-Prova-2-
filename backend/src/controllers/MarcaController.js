@@ -1,4 +1,4 @@
-const { Marca } = require("../models");
+const { Marca } = require("../models/Marca");
 
 module.exports = {
   async index(req, res) {

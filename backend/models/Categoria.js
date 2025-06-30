@@ -1,5 +1,13 @@
-module.exports = (sequelize, DataTypes) => {
+const { DataTypes } = require('sequelize');
+const db = require('../db');
+
   const Categoria = sequelize.define("Categoria", {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
     codigo: {
       type: DataTypes.INTEGER
     },
@@ -13,12 +21,11 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       },
       onUpdate: 'CASCADE',
-      onDelete: 'SET NULL' // ou 'CASCADE', dependendo do comportamento desejado
+      onDelete: 'SET NULL'
     }
   }, {
     tableName: 'Categorias',
-    timestamps: true // Garante que `createdAt` e `updatedAt` sejam considerados
+    timestamps: true
   });
 
-  return Categoria;
-};
+module.exports = Categoria;

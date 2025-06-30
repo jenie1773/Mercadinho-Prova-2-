@@ -1,5 +1,13 @@
-module.exports = (sequelize, DataTypes) => {
+const { DataTypes } = require('sequelize');
+const db = require('../db');
+
   const Compra = sequelize.define("Compra", {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
     codigo: {
       type: DataTypes.INTEGER
     },
@@ -15,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     formaPagamentoId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'FormaPagamentos',
+        model: 'FormaPagamento',
         key: 'id'
       },
       onUpdate: 'CASCADE',
@@ -26,5 +34,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
-  return Compra;
-};
+module.exports = Compra;
+
