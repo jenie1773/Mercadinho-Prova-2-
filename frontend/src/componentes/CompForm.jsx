@@ -1,34 +1,34 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useForm } from 'react-hook-form';
+import { CompInput } from "./CompInput";
 
-export function Form({ json, dadosLista, atualizarLista, closeModal }) {
+export function CompForm({ json, closeModal }) {
   const { register, handleSubmit, setValue } = useForm();
   const [successMessage, setSuccessMessage] = useState("");
   const [id, setId] = useState(null);
 
-  useEffect(() => {
-    if (dadosLista) {
-      setId(dadosLista._id);
-      json.campos.forEach(campo => {
-        setValue(campo.nome, dadosLista[campo.nome]);
-      });
-    }
-  }, [dadosLista, setValue, json.campos]);
+  // useEffect(() => {
+  //   if (dadosLista) {
+  //     setId(dadosLista._id);
+  //     json.campos.forEach(campo => {
+  //       setValue(campo.nome, dadosLista[campo.nome]);
+  //     });
+  //   }
+  // }, [dadosLista, setValue, json.campos]);
 
   const onSubmit = async (data) => {
     try {
-      if (!id) {
-        await axios.post(json.rotaModulo, data);
-        setSuccessMessage(`${json.nomeModulo} salvo com sucesso!`);
-        atualizarLista()
-        closeModal()
-      } else {
-        await axios.put(`${json.rotaModulo}/${id}`, data);
-        setSuccessMessage(`${json.nomeModulo} alterado com sucesso!`);
-        atualizarLista()
-        closeModal()
-      }
+      // if (!id) {
+      //   await axios.post(json.rotaModulo, data);
+      //   setSuccessMessage(`${json.nomeModulo} salvo com sucesso!`);
+      //   atualizarLista()
+      //   closeModal()
+      // } else {
+      //   await axios.put(`${json.rotaModulo}/${id}`, data);
+      //   setSuccessMessage(`${json.nomeModulo} alterado com sucesso!`);
+      //   atualizarLista()
+      //   closeModal()
+      // }
     } catch (error) {
       console.error("Erro ao enviar os dados:", error);
       setSuccessMessage("Erro ao salvar os dados.");
@@ -58,13 +58,8 @@ export function Form({ json, dadosLista, atualizarLista, closeModal }) {
               >
                 {campo.label}
               </label>
-              <input
-                {...register(campo.nome, { required: campo.required })}
-                type={campo.type || "text"}
-                id={campo.nome}
-                name={campo.nome}
-                className="bg-gray-100 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2"
-              />
+          
+            <CompInput/>
             </div>
           ))}
 
