@@ -1,13 +1,13 @@
 import React from "react";
 import { CompForm } from "../../componentes/CompForm";
 
-export function Produto() {
+export function FormaPagamento() {
     const [config, setConfig] = useState(null);
 
     useEffect(() => {
         setConfig = {        
-            rotaModulo: 'http://localhost:3000/api/produto',
-            nomeModulo: 'Produto',
+            rotaModulo: 'http://localhost:3000/api/formapagamento',
+            nomeModulo: 'FormaPagamento',
             campos: [
                 { "nome": "id", "label": "Id", "type": "number", "required": false },
                 { "nome": "codigo", "label": "Código", "type": "number", "required": true },

@@ -2,12 +2,17 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { NotFound } from "./componentes/NotFound";
-import { Form } from "./componentes/Form";
 import { Navbar } from "./componentes/Navbar";
-import { Products } from "./componentes/Products";
-import { Estoque } from "./componentes/Estoque";
 import { Home } from "./componentes/Home";
-import { Marca } from "./componentes/Marca";
+import { Produto } from "./views/produto/Form";
+import { Estoque } from "./views/estoque/Form";
+import { FormaPagamento } from "./views/formapagamento/Form";
+import { Marca } from "./views/marca/Form";
+import { UnidadeMedida } from "./views/unidademedida/Form";
+import { Categoria } from "./views/categoria/Form";
+import { Usuario } from "./views/usuario/Form";
+import { Compra } from "./views/compra/Form";
+
 
 function App() {
   return (
@@ -15,16 +20,16 @@ function App() {
       <Navbar />
       <Router>
         <Routes>
-          <Route path="/products" element={<Products />} />
-          <Route path="/estoque" element={<Estoque />} />
-          <Route path="/categoria" element={<Categoria />} />
-          <Route path="/compra" element={<Compra />} />
-          <Route path="/formapagamento" element={<FormaPagamento />} />
-          <Route path="/unidademedida" element={<UnidadeMedida />} />
-          <Route path="/marca" element={<Marca />} />
-          <Route path="/form" element={<Form />} />
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/produto" element={<Produto />} />
+        <Route path="/estoque" element={<Estoque />} />
+        <Route path="/marca" element={<Marca />} />
+        <Route path="/formapagamento" element={<FormaPagamento />} />
+        <Route path="/unidademedida" element={<UnidadeMedida />} />
+        <Route path="/categoria" element={<Categoria />} />
+        <Route path="/compra" element={<Compra />} />
+        <Route path="/usuario" element={<Usuario />} />
+        <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>

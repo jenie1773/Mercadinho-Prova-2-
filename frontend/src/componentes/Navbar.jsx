@@ -2,6 +2,17 @@ import React from "react";
 import "../App.css";
 
 export function Navbar() {
+    const rotas = [
+        { path: "produto", label: "Produtos" },
+        { path: "estoque", label: "Estoque" },
+        { path: "marca", label: "Marca" },
+        { path: "compra", label: "Compra" },
+        { path: "categoria", label: "Categoria" },
+        { path: "formapagamento", label: "Forma de Pagamento" },
+        { path: "unidademedida", label: "Unidade de Medida" },
+        { path: "usuario", label: "Usuário" },
+      ];
+
   return (
     <header>
         <nav className="bg-gray-800 w-full">
@@ -13,11 +24,10 @@ export function Navbar() {
               
                 <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
-                    <a href="/products" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Produtos</a>
-                    <a href="/estoque" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Estoque</a>
-                    <a href="/marca" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Marca</a>
-                    <a href="/inventario" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Inventario</a>
-                </div>
+                        {rotas.map((rota) => (
+                            <a href={`/${rota.path}`} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
+                        ))}
+                    </div>
                 </div>
                 </div>
 
@@ -26,10 +36,9 @@ export function Navbar() {
 
             <div className="sm:hidden" id="mobile-menu">
             <div className="space-y-1 px-2 pb-3 pt-2">
-                <a href="/products" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Produtos</a>
-                <a href="/estoque" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Estoque</a>
-                <a href="/marca" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Marca</a>
-                <a href="/inventario" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Inventario</a>
+                {rotas.map((rota) => (
+                    <a href={`/${rota.path}`} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
+                ))}
             </div>
             </div>
         </nav>
