@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export function CompLabel({ json }) {
+export function CompLabel({ nome, label }) {
     return (
-        <>
-            
-        </>
-    ) 
+        <label
+            htmlFor={nome}
+            className="block text-sm font-medium text-gray-700"
+        >{label}</label>
+    )
 }

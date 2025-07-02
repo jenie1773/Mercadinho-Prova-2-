@@ -2,19 +2,29 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home } from '../componentes/Home';
 import { NotFound } from '../componentes/NotFound';
-import { Products } from '../componentes/Products';
-import { Estoque } from '../componentes/Estoque';
-import { Inventario } from '../componentes/Inventario';
+import { Categoria } from '../views/categoria/Form';
+import { Compra } from '../views/compra/Form';
+import { Estoque } from '../views/estoque/Form';
+import { FormaPagamento } from '../views/formapagamento/Form';
+import { Marca } from '../views/marca/Form';
+import { Produto } from '../views/produto/Form';
+import { UnidadeMedida } from '../views/unidademedida/Form';
+import { Usuario } from '../views/usuario/Form';
+
 
 export function AppRoutes() {
   return (
     <Router>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/products" element={<Products />} />
+      <Route path="/produto" element={<Produto />} />
       <Route path="/estoque" element={<Estoque />} />
-      <Route path="/inventario" element={<Inventario />} />
-      <Route path="/form" element={<Form />} />
+      <Route path="/marca" element={<Marca />} />
+      <Route path="/formapagamento" element={<FormaPagamento />} />
+      <Route path="/unidademedida" element={<UnidadeMedida />} />
+      <Route path="/categoria" element={<Categoria />} />
+      <Route path="/compra" element={<Compra />} />
+      <Route path="/usuario" element={<Usuario />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>
