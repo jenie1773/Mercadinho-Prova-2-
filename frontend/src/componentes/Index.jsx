@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
-import { Form } from "./Form";
+import { CompForm } from "./CompForm";
 
-export function Index({ json, FormComponent }) {
+export function Index({ config, FormComponent }) {
+  console.log('config',config)
+  console.log('FormComponent',FormComponent)
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [QtdItensPagina] = useState(5);
@@ -21,7 +23,7 @@ export function Index({ json, FormComponent }) {
 
   async function handleList() {
     try {
-      const result = await axios.get(json.rotaModulo);
+      const result = await axios.get(config.rotaModulo);
       setData(result.data);
     } catch (err) {
       console.log("Erro ao buscar os dados da API: ", err);
@@ -35,7 +37,7 @@ export function Index({ json, FormComponent }) {
 
   const deletaItem = async (id, nome) => {
     try {
-      await axios.delete(`${json.rotaModulo}/${id}`);
+      await axios.delete(`${config.rotaModulo}/${id}`);
       alert(nome + " deletado com sucesso!");
       handleList();
     } catch (error) {
@@ -58,19 +60,24 @@ export function Index({ json, FormComponent }) {
               Adicionar
             </button>
           </div>
-          <h1>{json.nomeModulo}</h1>
-          <p>Aqui estão todos os {json.nomeModulo}s disponíveis</p>
+          <h1>{config.nomeModulo}</h1>
+          <p>Aqui estão todos os {config.nomeModulo}s disponíveis</p>
         </div>
 
         {isModalOpen && (
-          <FormComponent dadosLista={dadosItem} closeModal={closeModal} json={json} atualizarLista={handleList}/>
+          <FormComponent 
+            dadosLista={dadosItem} 
+            closeModal={closeModal} 
+            config={config} 
+            atualizarLista={handleList}
+          />
         )}
 
         <div className="overflow-x-auto px-4 py-4">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
               <tr>
-                {json.campos.map((campo, index) => (
+                {config.campos.map((campo, index) => (
                   <th key={index} className="py-2 px-4 border-b">
                     {campo.label}
                   </th>
@@ -83,7 +90,7 @@ export function Index({ json, FormComponent }) {
                 .slice(primeiroItem, ultimoItem)
                 .map((item, index) => (
                   <tr key={index}>
-                    {json.campos.map((campo, i) => (
+                    {config.campos.map((campo, i) => (
                       <td key={i} className="py-2 px-4 border-b">
                         {item[campo.nome]}
                       </td>
@@ -96,7 +103,7 @@ export function Index({ json, FormComponent }) {
                         Editar
                       </button>
                       <button
-                        onClick={() => deletaItem(item._id, item.nome)}
+                        onClick={() => deletaItem(item.id, item.nome)}
                         className="text-red-500 hover:text-red-700 ml-4"
                       >
                         Deletar

@@ -15,6 +15,8 @@ export function Navbar() {
 
   return (
     <header>
+        
+
         <nav className="bg-gray-800 w-full">
             <div className="w-full px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">

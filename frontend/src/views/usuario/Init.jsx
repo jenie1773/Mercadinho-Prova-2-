@@ -1,18 +1,17 @@
 import React from "react";
 import { Index } from './../../componentes/Index';
-import { Categoria } from './Form';
+import { Usuario } from './Form';
 
-export default function CategoriaInit() {
+export default function UsuarioInit() {
   const config = {
-    rotaModulo: "http://localhost:3000/api/categorias",
-    nomeModulo: "Categoria",
+    rotaModulo: "http://localhost:3000/api/usuario",
+    nomeModulo: "Usuário",
     campos: [
       { nome: "id", label: "Id", type: "number", required: false },
       { nome: "codigo", label: "Código", type: "number", required: true },
       { nome: "nome", label: "Nome", type: "text", required: true },
-      { nome: "categoriaId", label: "Categoria Pai", type: "select", required: true },
     ],
   };
 
-  return <Index config={config} FormComponent={Categoria} />;
+  return <Index config={config}  FormComponent={Usuario}/>;
 }

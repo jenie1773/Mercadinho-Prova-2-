@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { CompForm } from "../../componentes/CompForm";
 
-export function Categoria({ props }) {
+export function Categoria({ config, dadosLista, atualizarLista, closeModal }) {
 
-    if (!props) {
+    if (!config) {
         return <p>Carregando...</p>; 
     }
 
     return (
-        <CompForm config={props}/>
+        <CompForm 
+            config={config} 
+            dadosLista={dadosLista} 
+            atualizarLista={atualizarLista} 
+            closeModal={closeModal} 
+        />
     )
 }
