@@ -1,4 +1,4 @@
-const { Usuario } = require("../models/Usuario");
+const { Usuario } = require("../../models/Usuario");
 
 module.exports = {
   async index(req, res) {
@@ -12,7 +12,10 @@ module.exports = {
 
   async create(req, res) {
     try {
-      const novoUsuario = await Usuario.create(req.body);
+      const bcrypt = require("bcryptjs");
+      const senhaHash = await bcrypt.hash(req.body.senha, 8);
+
+      const novoUsuario = await Usuario.create({...req.body, senha: senhaHash});
       return res.status(201).json({ message: "Usuário salva com sucesso!", categoria: novoUsuario });
     } catch (err) {
       return res.status(400).json({ error: "Erro ao salvar usuário", detalhes: err.message });

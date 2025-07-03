@@ -8,8 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ToastContainer />
-     <BrowserRouter>
       <App />
-    </BrowserRouter>
   </StrictMode>,
 )

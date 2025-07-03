@@ -8,8 +8,10 @@ const CompraController = require("../controllers/CompraController");
 const CategoriaController = require("../controllers/CategoriaController");
 const FormaPagamentoController = require("../controllers/FormaPagamentoController");
 const UnidadeMedidaController = require("../controllers/UnidadeMedidaController");
+const UsuarioController = require("../controllers/UsuarioController");
 
 // Rotas
+
 router.post('/produtos', ProdutoController.create);
 router.get('/produtos', ProdutoController.index);
 router.delete('/produtos/:id', ProdutoController.delete);
@@ -44,5 +46,10 @@ router.post('/unidadeMedida', UnidadeMedidaController.create);
 router.get('/unidadeMedida', UnidadeMedidaController.index);
 router.delete('/unidadeMedida/:id', UnidadeMedidaController.delete);
 router.put('/unidadeMedida/:id', UnidadeMedidaController.update);
+
+router.post('/usuario', UsuarioController.create);
+router.get('/usuario', UsuarioController.index);
+router.delete('/usuario/:id', UsuarioController.delete);
+router.put('/usuario/:id', UsuarioController.update);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 // pages/ProductList.jsx
-import { ProductCard } from "../components/ProductCard";
+
+import { ProductCard } from "./ProdutoCard";
 
 const produtos = [
   {
