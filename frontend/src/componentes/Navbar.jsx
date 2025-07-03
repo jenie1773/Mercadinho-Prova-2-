@@ -24,8 +24,8 @@ export function Navbar() {
               
                 <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
-                        {rotas.map((rota) => (
-                            <a href={`/${rota.path}`} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
+                        {rotas.map((rota, index) => (
+                            <a href={`/${rota.path}`} key={index} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
                         ))}
                     </div>
                 </div>
@@ -36,8 +36,8 @@ export function Navbar() {
 
             <div className="sm:hidden" id="mobile-menu">
             <div className="space-y-1 px-2 pb-3 pt-2">
-                {rotas.map((rota) => (
-                    <a href={`/${rota.path}`} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
+                {rotas.map((rota, index) => (
+                    <a href={`/${rota.path}`} key={index} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{ rota.label }</a>
                 ))}
             </div>
             </div>

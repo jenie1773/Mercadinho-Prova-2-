@@ -12,6 +12,7 @@ import { UnidadeMedida } from "./views/unidademedida/Form";
 import { Categoria } from "./views/categoria/Form";
 import { Usuario } from "./views/usuario/Form";
 import { Compra } from "./views/compra/Form";
+import CategoriaInit from "./views/categoria/Init";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Route path="/marca" element={<Marca />} />
         <Route path="/formapagamento" element={<FormaPagamento />} />
         <Route path="/unidademedida" element={<UnidadeMedida />} />
-        <Route path="/categoria" element={<Categoria />} />
+        <Route path="/categoria" element={<CategoriaInit />} />
         <Route path="/compra" element={<Compra />} />
         <Route path="/usuario" element={<Usuario />} />
         <Route path="*" element={<NotFound />} />

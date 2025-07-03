@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { CompButton } from "./CompButton";
 import { CompInput } from "./CompInput";
 import { useForm } from 'react-hook-form';
+import { CompLabel } from './CompLabel';
 
-export function CompForm({ config, closeModal }) {
+export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
   const { register, handleSubmit, setValue } = useForm();
   const [successMessage, setSuccessMessage] = useState("");
   const [id, setId] = useState(null);

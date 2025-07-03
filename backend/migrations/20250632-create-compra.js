@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       cpfComprador: {
-        type: Sequelize.String
+        type: Sequelize.STRING
       },
       valorTotal: {
         type: Sequelize.FLOAT

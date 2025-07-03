@@ -3,7 +3,7 @@ import "../App.css";
 import axios from "axios";
 import { Form } from "./Form";
 
-export function Index({ json }) {
+export function Index({ json, FormComponent }) {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [QtdItensPagina] = useState(5);
@@ -63,7 +63,7 @@ export function Index({ json }) {
         </div>
 
         {isModalOpen && (
-          <Form dadosLista={dadosItem} closeModal={closeModal} json={json} atualizarLista={handleList}/>
+          <FormComponent dadosLista={dadosItem} closeModal={closeModal} json={json} atualizarLista={handleList}/>
         )}
 
         <div className="overflow-x-auto px-4 py-4">

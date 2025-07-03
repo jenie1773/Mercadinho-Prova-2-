@@ -2,7 +2,7 @@ import React from "react";
 
 export function CompButton({ type, closeModal, color, texto, addClass="" }) {
     if (!color) {
-        switch(toLowerCase(texto)) {
+        switch(texto.toLowerCase()) {
             case 'cancelar':
                 color = 'red'
                 break;

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CompForm } from "../../componentes/CompForm";
 
 export function Produto() {
     const [config, setConfig] = useState(null);
 
     useEffect(() => {
-        setConfig = {        
+        setConfig({        
             rotaModulo: 'http://localhost:3000/api/produto',
             nomeModulo: 'Produto',
             campos: [
@@ -13,9 +13,9 @@ export function Produto() {
                 { "nome": "codigo", "label": "Código", "type": "number", "required": true },
                 { "nome": "nome", "label": "Nome", "type": "text", "required": true },
             ]
-        }
+        })
     }, []);
-
+    console.log(config)
     if (!config) {
         return <p>Carregando...</p>; 
     }

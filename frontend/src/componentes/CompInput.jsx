@@ -1,7 +1,6 @@
 import React from "react";
 
-export function CompInput({ type="text", nome, required=false, options=[], register }) {
-    const { register } = useForm();
+export function CompInput({ type="text", nome, register,  required=false, options=[] }) {
 
     if (type == "text" || type == "number") {
         return (

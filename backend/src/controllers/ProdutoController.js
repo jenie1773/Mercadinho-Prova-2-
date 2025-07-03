@@ -22,7 +22,7 @@ module.exports = {
     }
   },
 
-  async store(req, res) {
+  async create(req, res) {
     try {
       const produto = await Produto.create(req.body);
       return res.status(201).json(produto);
@@ -44,7 +44,7 @@ module.exports = {
     }
   },
 
-  async destroy(req, res) {
+  async delete(req, res) {
     try {
       const produto = await Produto.findByPk(req.params.id);
       if (!produto) {

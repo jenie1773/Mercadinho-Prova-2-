@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CompForm } from "../../componentes/CompForm";
 
 export function Compra() {
     const [config, setConfig] = useState(null);
 
     useEffect(() => {
-        setConfig = {        
+        setConfig({        
             rotaModulo: 'http://localhost:3000/api/compra',
             nomeModulo: 'Compra',
             campos: [
@@ -13,7 +13,7 @@ export function Compra() {
                 { "nome": "codigo", "label": "Código", "type": "number", "required": true },
                 { "nome": "nome", "label": "Nome", "type": "text", "required": true },
             ]
-        }
+        })
     }, []);
 
     if (!config) {
