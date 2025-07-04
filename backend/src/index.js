@@ -4,6 +4,7 @@ const cors = require('cors');
 const requireDir = require("require-dir");
 const uri = "mongodb://127.0.0.1:27017";
 const app = express();
+const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use(cors());
@@ -12,7 +13,7 @@ require('dotenv').config();
 mongoose.connect(uri, {dbName: 'api_projeto'});
 
 requireDir("./models");
-
+app.use(authRoutes);
 app.use("/api", require("./routes/routes"));
 
 app.listen(3000, () => {

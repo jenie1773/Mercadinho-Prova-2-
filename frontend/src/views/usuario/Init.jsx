@@ -7,9 +7,9 @@ export default function UsuarioInit() {
     rotaModulo: "http://localhost:3000/api/usuario",
     nomeModulo: "Usuário",
     campos: [
-      { nome: "id", label: "Id", type: "number", required: false },
       { nome: "codigo", label: "Código", type: "number", required: true },
       { nome: "nome", label: "Nome", type: "text", required: true },
+      { nome: "email", label: "Email", type: "text", required: true }
     ],
   };
 

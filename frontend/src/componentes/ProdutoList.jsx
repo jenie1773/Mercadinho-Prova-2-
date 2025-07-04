@@ -1,5 +1,3 @@
-// pages/ProductList.jsx
-
 import { ProductCard } from "./ProdutoCard";
 
 const produtos = [

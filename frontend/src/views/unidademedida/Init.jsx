@@ -7,7 +7,6 @@ export default function UnidadeMedidaInit() {
     rotaModulo: "http://localhost:3000/api/unidademedida",
     nomeModulo: "Unidade de Medida",
     campos: [
-      { nome: "id", label: "Id", type: "number", required: false },
       { nome: "codigo", label: "Código", type: "number", required: true },
       { nome: "nome", label: "Nome", type: "text", required: true },
     ],

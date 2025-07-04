@@ -19,7 +19,7 @@ export function Navbar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setLogado(!!token); // true se existir token
+    setLogado(!!token);
   }, []);
 
   const handleLogout = () => {

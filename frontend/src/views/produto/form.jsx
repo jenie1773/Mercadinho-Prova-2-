@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CompForm } from "../../componentes/CompForm";
 
 export function Produto({ config, dadosLista, atualizarLista, closeModal }) {
-
+    
     if (!config) {
         return <p>Carregando...</p>; 
     }

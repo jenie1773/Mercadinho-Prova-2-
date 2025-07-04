@@ -6,7 +6,8 @@ module.exports = {
     const senhaHash = await bcrypt.hash('123456', 10);
 
     return queryInterface.bulkInsert('Usuarios', [{
-      nome: 'Usuário Admin',
+      codigo: 1,
+      nome: 'Admin',
       email: 'admin@email.com',
       senha: senhaHash,
       createdAt: new Date(),

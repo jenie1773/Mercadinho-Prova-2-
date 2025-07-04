@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
-import { CompForm } from "./CompForm";
 
 export function Index({ config, FormComponent }) {
-  console.log('config',config)
-  console.log('FormComponent',FormComponent)
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [QtdItensPagina] = useState(5);
@@ -16,6 +13,7 @@ export function Index({ config, FormComponent }) {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const closeModal = () => setIsModalOpen(false);
 
+ 
   const openModal = () => {
     setdadosItem(false);
     setIsModalOpen(true);

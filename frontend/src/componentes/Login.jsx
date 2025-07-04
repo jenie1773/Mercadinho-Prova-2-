@@ -11,7 +11,7 @@ export function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/login", {
+      const response = await axios.post("http://localhost:3000/login", {
         email,
         senha,
       });
@@ -21,7 +21,7 @@ export function Login() {
       localStorage.setItem("token", token); // salva o token
 
       alert("Login realizado com sucesso!");
-      navigate("/"); // redireciona pra home ou outra página
+      navigate("/dashboard");
     } catch (error) {
       console.error("Erro ao logar:", error);
       alert("Login inválido");

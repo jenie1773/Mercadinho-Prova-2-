@@ -7,7 +7,6 @@ export default function FormaPagamentoInit() {
     rotaModulo: "http://localhost:3000/api/formapagamento",
     nomeModulo: "Forma de Pagamento",
     campos: [
-      { nome: "id", label: "Id", type: "number", required: false },
       { nome: "codigo", label: "Código", type: "number", required: true },
       { nome: "nome", label: "Nome", type: "text", required: true },
     ],

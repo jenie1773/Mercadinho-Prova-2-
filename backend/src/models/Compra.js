@@ -32,5 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'Compras',
     timestamps: true
   });
+
+  return Compra
 }
 

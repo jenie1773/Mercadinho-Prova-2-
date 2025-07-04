@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-const FormaPagamento = db.define('FormaPagamento', {
+const FormaPagamento = sequelize.define('FormaPagamento', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,5 +17,5 @@ const FormaPagamento = db.define('FormaPagamento', {
   tableName: 'FormaPagamento',
   timestamps: true
 });
-  
+  return FormaPagamento
 }

@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
   const Categoria = sequelize.define("Categoria", {
     id: {
       type: DataTypes.INTEGER,
@@ -27,4 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: true
   });
 
+  return Categoria;
 }

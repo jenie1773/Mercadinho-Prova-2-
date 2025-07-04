@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-const Estoque = db.define('Estoque', {
+const Estoque = sequelize.define('Estoque', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,4 +17,6 @@ const Estoque = db.define('Estoque', {
   tableName: 'Estoques',
   timestamps: true
 });
+
+    return Estoque
 }

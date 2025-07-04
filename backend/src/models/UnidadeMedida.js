@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-const UnidadeMedida = db.define('UnidadeMedida', {
+const UnidadeMedida = sequelize.define('UnidadeMedida', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,4 +17,5 @@ const UnidadeMedida = db.define('UnidadeMedida', {
   tableName: 'UnidadeMedida',
   timestamps: true
 });
+    return UnidadeMedida
 }

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-const Marca = db.define('Marca', {
+const Marca = sequelize.define('Marca', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,4 +17,5 @@ const Marca = db.define('Marca', {
   tableName: 'Marcas',
   timestamps: true
 });
+    return Marca
 }

@@ -1,4 +1,4 @@
-const { UnidadeMedida } = require("../models/UnidadeMedida");
+const {UnidadeMedida} = require("../models");
 
 module.exports = {
   async index(req, res) {

@@ -1,4 +1,4 @@
-const { FormaPagamento } = require("../models/FormaPagamento");
+const { FormaPagamento } = require("../models");
 
 module.exports = {
   async index(req, res) {

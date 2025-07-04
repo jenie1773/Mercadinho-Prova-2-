@@ -36,7 +36,6 @@ export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
       setSuccessMessage("Erro ao salvar ou alterar os dados.");
     }
   };
-  
 
   return (
   <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -59,7 +58,7 @@ export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
           {config.campos.map((campo, index) => (
             <div className="mb-4" key={index}>
               <CompLabel nome={campo.nome} label={campo.label} />
-              <CompInput nome={campo.nome} type={campo.type} required={campo.required} register={register} />
+              <CompInput nome={campo.nome} type={campo.type} required={campo.required} register={register} options={campo?.options}/>
             </div>
           ))}
 
