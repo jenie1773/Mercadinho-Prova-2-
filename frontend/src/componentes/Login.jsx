@@ -1,24 +1,47 @@
-import  { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { CompLabel } from "./CompLabel";
+import { Usuario } from './../views/usuario/Form';
+import { useAuth } from "../componentes/AuthContext"; // já tava certo
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const navigate = useNavigate(); // pra redirecionar após login
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dadosItem, setdadosItem] = useState(false);
+  const [data, setData] = useState([]);
+  const { login } = useAuth(); // 👈 pega o login do contexto
+
+  const closeModal = () => setIsModalOpen(false);
+
+  async function handleList() {
+    try {
+      const result = await axios.get('http://localhost:3000/api/usuario');
+      setData(result.data);
+    } catch (err) {
+      console.log("Erro ao buscar os dados da API: ", err);
+    }
+  }
+
+  useEffect(() => {
+    handleList();
+  }, []);
+
+  const openModal = () => {
+    setdadosItem(false);
+    setIsModalOpen(true);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        senha,
-      });
-
+      const response = await axios.post("http://localhost:3000/login", { email, senha });
       const { token } = response.data;
 
-      localStorage.setItem("token", token); // salva o token
+      login(token); // 👈 usa o contexto pra salvar token e atualizar estado global
 
       alert("Login realizado com sucesso!");
       navigate("/dashboard");
@@ -31,11 +54,6 @@ export function Login() {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
         <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
           Entre com sua conta
         </h2>
@@ -44,12 +62,7 @@ export function Login() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleLogin}>
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-900"
-            >
-              Email:
-            </label>
+            <CompLabel nome="email" label="Email" />
             <div className="mt-2">
               <input
                 type="email"
@@ -64,12 +77,7 @@ export function Login() {
           </div>
 
           <div>
-            <label
-              htmlFor="senha"
-              className="block text-sm font-medium text-gray-900"
-            >
-              Senha:
-            </label>
+            <CompLabel nome="senha" label="Senha" />
             <div className="mt-2">
               <input
                 type="password"
@@ -95,10 +103,18 @@ export function Login() {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Não possui login?
-          <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500" onClick={openModal}>
             {" "}Cadastrar
           </a>
         </p>
+
+        {isModalOpen && (
+          <Usuario
+            atualizarLista={handleList}
+            dadosLista={dadosItem}
+            closeModal={closeModal}
+          />
+        )}
       </div>
     </div>
   );

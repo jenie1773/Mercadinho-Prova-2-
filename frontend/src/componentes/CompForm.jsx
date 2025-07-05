@@ -11,6 +11,7 @@ export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
   const [id, setId] = useState(null);
   const isEdit = Boolean(id);
 
+  
   useEffect(() => {
     if (dadosLista) {
       setId(dadosLista.id);

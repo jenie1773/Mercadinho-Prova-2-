@@ -1,10 +1,10 @@
 import "../App.css";
-import { useEffect, useState } from "react";
+import { useAuth } from "../componentes/AuthContext"; // novo
 import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
+  const { logado, logout } = useAuth();
   const navigate = useNavigate();
-  const [logado, setLogado] = useState(false);
 
   const rotas = [
     { path: "produto", label: "Produtos" },
@@ -17,14 +17,8 @@ export function Navbar() {
     { path: "usuario", label: "Usuário" },
   ];
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setLogado(!!token);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setLogado(false);
+    logout();
     navigate("/login");
   };
 

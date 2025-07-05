@@ -13,6 +13,7 @@ import UsuarioInit from "./views/usuario/Init";
 import { Home } from "./componentes/Home";
 import { Dashboard } from "./componentes/Dashboard";
 import { Login } from "./componentes/Login";
+import { Cadastro } from './componentes/Cadastro';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/produto" element={<ProdutoInit />} />
         <Route path="/estoque" element={<EstoqueInit />} />
