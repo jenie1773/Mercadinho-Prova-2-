@@ -18,7 +18,7 @@ export default function CompraInit() {
 
   useEffect(() => {
     handleList();
-  }, [config]);
+  }, []);
 
   useEffect(() => {
     if (data.length != 0) {

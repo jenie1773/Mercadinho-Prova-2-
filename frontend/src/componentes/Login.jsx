@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CompLabel } from "./CompLabel";
 import { Usuario } from './../views/usuario/Form';
 import { useAuth } from "../componentes/AuthContext"; // já tava certo
+import { toast } from "react-toastify";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -43,11 +44,11 @@ export function Login() {
 
       login(token); // 👈 usa o contexto pra salvar token e atualizar estado global
 
-      alert("Login realizado com sucesso!");
+      toast.success("Login realizado com sucesso!");
       navigate("/dashboard");
     } catch (error) {
       console.error("Erro ao logar:", error);
-      alert("Login inválido");
+      toast.error("Login inválido");
     }
   };
 

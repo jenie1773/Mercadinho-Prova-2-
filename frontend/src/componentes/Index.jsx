@@ -36,11 +36,11 @@ export function Index({ config, FormComponent }) {
   const deletaItem = async (id, nome) => {
     try {
       await axios.delete(`${config.rotaModulo}/${id}`);
-      alert(nome + " deletado com sucesso!");
+      toast.success(nome + " deletado com sucesso!");
       handleList();
     } catch (error) {
       console.error("Erro ao deletar o item:", error);
-      alert("Erro ao deletar!");
+      toast.error("Erro ao deletar!");
     }
   };
 
