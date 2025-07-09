@@ -12,7 +12,15 @@ module.exports = {
 
   async show(req, res) {
     try {
-      const produto = await Produto.findByPk(req.params.id);
+
+      const produto = await Produto.findByPk(req.params.id, {
+        include: {
+          model: Marca,
+          as: 'marcaId',
+          attributes: ['id', 'nome'], 
+        },
+      });
+  
       if (!produto) {
         return res.status(404).json({ error: 'Produto não encontrado' });
       }
@@ -24,13 +32,28 @@ module.exports = {
 
   async create(req, res) {
     try {
-      const produto = await Produto.create(req.body);
+      const { nome, preco, codigo, marcaId, categoriaId, unidadeMedidaId, pesoEmbalagem, dataValidade } = req.body;
+  
+      const imagemBuffer = req.file ? req.file.buffer : null;
+
+      const produto = await Produto.create({
+        nome,
+        preco,
+        codigo,
+        marcaId,
+        categoriaId,
+        unidadeMedidaId,
+        pesoEmbalagem,
+        dataValidade,
+        imagem: imagemBuffer
+      });
+  
       return res.status(201).json(produto);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
   },
-
+  
   async update(req, res) {
     try {
       const produto = await Produto.findByPk(req.params.id);

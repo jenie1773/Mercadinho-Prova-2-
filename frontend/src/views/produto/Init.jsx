@@ -1,35 +1,33 @@
-       import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Index } from './../../componentes/Index';
 import axios from "axios";
 import { Produto } from "./form";
 
 export default function ProdutoInit() {
-
-  const [data, setData] = useState([]);
-  const [options, setOptions] = useState([]);
-
-  async function handleList() {
-    try {
-      const result = await axios.get('http://localhost:3000/api/marca');
-      setData(result.data);
-    } catch (err) {
-      console.log("Erro ao buscar os dados da API: ", err);
-    }
-  }
+  const [marcas, setMarcas] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [unidades, setUnidades] = useState([]);
 
   useEffect(() => {
-    handleList();
+    async function fetchOptions() {
+      try {
+        const [resMarcas, resCategorias, resUnidades] = await Promise.all([
+          axios.get('http://localhost:3000/api/marca'),
+          axios.get('http://localhost:3000/api/categoria'),
+          axios.get('http://localhost:3000/api/unidademedida'),
+        ]);
+
+        setMarcas(resMarcas.data.map(item => ({ value: item.id, name: item.nome })));
+        setCategorias(resCategorias.data.map(item => ({ value: item.id, name: item.nome })));
+        setUnidades(resUnidades.data.map(item => ({ value: item.id, name: item.nome })));
+
+      } catch (err) {
+        console.error("Erro ao buscar dados:", err);
+      }
+    }
+
+    fetchOptions();
   }, []);
-
-  useEffect(() => {
-    if (data.length != 0) {
-      const teste = data.map((item) => ({
-        value: item.id,
-        name: item.nome,
-      }));
-      setOptions(teste)
-    }
-  }, [data]);
 
   const config = {
     rotaModulo: "http://localhost:3000/api/produtos",
@@ -37,11 +35,11 @@ export default function ProdutoInit() {
     campos: [
       { nome: "codigo", label: "Código", type: "number", required: true },
       { nome: "nome", label: "Nome", type: "text", required: true },
-      { nome: "marcaId", label: "Marca", type: "select",options:options, required: false },
+      { nome: "marcaId", label: "Marca", type: "select", options: marcas, required: false },
       { nome: "imagem", label: "Imagem", type: "file", required: true },
       { nome: "preco", label: "Preço", type: "number", required: true },
-      { nome: "categoriaId", label: "Categoria", type: "select", required: false },
-      { nome: "unidadeMedidaId", label: "Unidade de medida", type: "select", required: false },
+      { nome: "categoriaId", label: "Categoria", type: "select", options: categorias, required: false },
+      { nome: "unidadeMedidaId", label: "Unidade de medida", type: "select", options: unidades, required: false },
       { nome: "pesoEmbalagem", label: "Peso da embalagem", type: "number", required: true },
       { nome: "dataValidade", label: "Data de validade", type: "text", required: true },
     ],

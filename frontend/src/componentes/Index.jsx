@@ -22,7 +22,16 @@ export function Index({ config, FormComponent }) {
   async function handleList() {
     try {
       const result = await axios.get(config.rotaModulo);
-      setData(result.data);
+      const dadosComImagemBase64 = result.data.map(produto => {
+        if (produto.imagem) {
+          const base64String = btoa(
+            produto.imagem.reduce((data, byte) => data + String.fromCharCode(byte), '')
+          );
+          return { ...produto, imagem: base64String };
+        }
+        return produto;
+      });
+      setData(dadosComImagemBase64);
     } catch (err) {
       console.log("Erro ao buscar os dados da API: ", err);
     }
@@ -90,7 +99,15 @@ export function Index({ config, FormComponent }) {
                   <tr key={index}>
                     {config.campos.map((campo, i) => (
                       <td key={i} className="py-2 px-4 border-b">
-                        {item[campo.nome]}
+                        {campo.nome === "imagem" && data[index].imagem ? (
+                          <img 
+                            src={`data:image/jpeg;base64,${data[index].imagem}`} 
+                            alt="imagem do produto" 
+                            style={{ width: 80, height: 80, objectFit: "cover" }} 
+                          />
+                        ) : (
+                          item[campo.nome]
+                        )}
                       </td>
                     ))}
                     <td className="flex justify-center border-b py-2">

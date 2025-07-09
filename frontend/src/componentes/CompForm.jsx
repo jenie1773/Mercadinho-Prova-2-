@@ -22,12 +22,26 @@ export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
   }, [dadosLista, setValue, config.campos]);
 
   const onSubmit = async (data) => {
+    const formData = new FormData();
     try {
+      Object.entries(data).forEach(([key, value]) => {
+ 
+        if (value instanceof FileList) {
+          if (value.length > 0) {
+            formData.append(key, value[0]); 
+          }
+        } else {
+          formData.append(key, value);
+        }
+      });
+
       const metodo = isEdit ? axios.put : axios.post;
       const url = isEdit ? `${config.rotaModulo}/${id}` : config.rotaModulo;
       const mensagem = isEdit ? "alterado" : "salvo";
   
-      await metodo(url, data);
+      await metodo(url, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       setSuccessMessage(`${config.nomeModulo} ${mensagem} com sucesso!`);
 
       atualizarLista();

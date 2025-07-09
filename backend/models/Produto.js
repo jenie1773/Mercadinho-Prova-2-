@@ -24,7 +24,8 @@ const Produto = db.define('Produto', {
     onDelete: 'CASCADE'
   },
   imagem: {
-    type: DataTypes.STRING
+    type: DataTypes.BLOB('long'),
+    allowNull: true,
   },
   preco: {
     type: DataTypes.FLOAT

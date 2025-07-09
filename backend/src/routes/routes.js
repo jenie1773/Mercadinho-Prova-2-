@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const ProdutoController = require("../controllers/ProdutoController");
 const EstoqueController = require("../controllers/EstoqueController");
 const MarcaController = require("../controllers/MarcaController");
@@ -12,7 +14,7 @@ const UsuarioController = require("../controllers/UsuarioController");
 
 // Rotas
 
-router.post('/produtos', ProdutoController.create);
+router.post('/produtos', upload.single("imagem"), ProdutoController.create);
 router.get('/produtos', ProdutoController.index);
 router.delete('/produtos/:id', ProdutoController.delete);
 router.put('/produtos/:id', ProdutoController.update);
