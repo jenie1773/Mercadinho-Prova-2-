@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
 const ProdutoController = require("../controllers/ProdutoController");
 const EstoqueController = require("../controllers/EstoqueController");
 const MarcaController = require("../controllers/MarcaController");

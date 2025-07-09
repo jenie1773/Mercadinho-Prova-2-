@@ -41,7 +41,7 @@ export default function ProdutoInit() {
       { nome: "categoriaId", label: "Categoria", type: "select", options: categorias, required: false },
       { nome: "unidadeMedidaId", label: "Unidade de medida", type: "select", options: unidades, required: false },
       { nome: "pesoEmbalagem", label: "Peso da embalagem", type: "number", required: true },
-      { nome: "dataValidade", label: "Data de validade", type: "text", required: true },
+      { nome: "dataValidade", label: "Data de validade", type: "date", required: true },
     ],
   };
 

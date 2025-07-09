@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export function Index({ config, FormComponent }) {
   const [data, setData] = useState([]);
@@ -23,9 +24,9 @@ export function Index({ config, FormComponent }) {
     try {
       const result = await axios.get(config.rotaModulo);
       const dadosComImagemBase64 = result.data.map(produto => {
-        if (produto.imagem) {
+        if (produto.imagem && produto.imagem.data) {
           const base64String = btoa(
-            produto.imagem.reduce((data, byte) => data + String.fromCharCode(byte), '')
+            produto.imagem.data.reduce((data, byte) => data + String.fromCharCode(byte), '')
           );
           return { ...produto, imagem: base64String };
         }
@@ -97,19 +98,19 @@ export function Index({ config, FormComponent }) {
                 .slice(primeiroItem, ultimoItem)
                 .map((item, index) => (
                   <tr key={index}>
-                    {config.campos.map((campo, i) => (
-                      <td key={i} className="py-2 px-4 border-b">
-                        {campo.nome === "imagem" && data[index].imagem ? (
-                          <img 
-                            src={`data:image/jpeg;base64,${data[index].imagem}`} 
-                            alt="imagem do produto" 
-                            style={{ width: 80, height: 80, objectFit: "cover" }} 
-                          />
-                        ) : (
-                          item[campo.nome]
-                        )}
-                      </td>
-                    ))}
+                  {config.campos.map((campo, i) => (
+                    <td key={i} className="py-2 px-4 border-b">
+                      {campo.type === "file" && item[campo.nome] ? (
+                        <img 
+                          src={`data:image/jpeg;base64,${item[campo.nome]}`} 
+                          alt={campo.label} 
+                          className="h-16 w-16 object-cover"
+                        />
+                      ) : (
+                        item[campo.nome]
+                      )}
+                    </td>
+                  ))}
                     <td className="flex justify-center border-b py-2">
                       <button
                         className="text-blue-500 hover:text-blue-700"

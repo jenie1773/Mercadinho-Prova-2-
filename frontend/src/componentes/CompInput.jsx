@@ -1,6 +1,6 @@
 import React from "react";
 
-export function CompInput({ type="text", nome, register,  required=false, options=[] }) {
+export function CompInput({ type="text", nome, register,  required = false, options=[] }) {
     console.log('compInput', options)
     if (type == "text" || type == "number") {
         return (
@@ -53,6 +53,19 @@ export function CompInput({ type="text", nome, register,  required=false, option
                 <p className="text-xs/5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                 </div>
             </div>
+        )
+    }
+
+    if (type == 'date') {
+        return (
+        <div className="flex flex-col">
+            <input
+              type="date"
+              id={nome}
+              {...register(nome, { required })}
+              className="border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
         )
     }
 }

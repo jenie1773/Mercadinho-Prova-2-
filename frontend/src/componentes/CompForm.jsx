@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { CompButton } from "./CompButton";
 import { CompInput } from "./CompInput";
 import { useForm } from 'react-hook-form';
 import { CompLabel } from './CompLabel';
@@ -39,9 +38,10 @@ export function CompForm({ config, dadosLista, atualizarLista, closeModal }) {
       const url = isEdit ? `${config.rotaModulo}/${id}` : config.rotaModulo;
       const mensagem = isEdit ? "alterado" : "salvo";
   
-      await metodo(url, formData, {
+      const resposta = await metodo(url, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+     
       setSuccessMessage(`${config.nomeModulo} ${mensagem} com sucesso!`);
 
       atualizarLista();

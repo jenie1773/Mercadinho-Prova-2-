@@ -4,7 +4,29 @@ module.exports = {
   async index(req, res) {
     try {
       const produtos = await Produto.findAll();
-      return res.json(produtos);
+
+      const produtosComImagemBase64 = produtos.map(produto => {
+        if (produto.imagem) {
+          let dataValidadeFormatada = null;
+          if (produto.dataValidade) {
+            const d = new Date(produto.dataValidade);
+            const dia = String(d.getDate()).padStart(2, '0');
+            const mes = String(d.getMonth() + 1).padStart(2, '0'); // mês começa do zero
+            const ano = d.getFullYear();
+            dataValidadeFormatada = `${dia}/${mes}/${ano}`;
+          }
+      
+          const base64 = Buffer.from(produto.imagem).toString('base64');
+          return {
+            ...produto.toJSON(),
+            imagem: base64,
+            dataValidade: dataValidadeFormatada,
+          };
+        }
+        return produto.toJSON();
+      });
+      
+      return res.json(produtosComImagemBase64);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
